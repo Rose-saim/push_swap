@@ -14,14 +14,16 @@ t_arg	*push_swap(int argc, char **argv)
 	printf("mediane|%d|\n", mediane);
 	while (list_argument_a != NULL)
 	{
-		if (list_argument_a->argument < mediane)
+		printf("list_argument_a isless thant meiane|%d|\n", list_argument_a->argument);
+		if (list_argument_a->argument <= mediane)
+		{
 			push_b(&list_argument_a, &list_argument_b);
-		list_argument_a = list_argument_a->next;
-	}
-	while (list_argument_b != NULL)
-	{
-		printf("list_argument_b|%d|\n", list_argument_b->argument);
-		list_argument_b = list_argument_b->next;
+		}
+		else	
+			list_argument_a = rotate_a(list_argument_a);
+		printf("list_argument_a isless thant meiane|%d|", list_argument_a->argument);
+		while (list_argument_a != NULL)
+			list_argument_a = list_argument_a->next;
 	}
 	return(list_argument_a);
 }

@@ -34,10 +34,14 @@ t_arg	*list_number_of_argument(char **argv)
 				o++;
 			}
 			number_node = ft_atoi(number);
-			list_argument = add_front_li(list_argument, number_node);
+			if (!list_argument)
+				list_argument = add_front_li(list_argument, number_node);
+			else
+				list_argument = add_back_li(list_argument, number_node);
 		}
 		argument++;
 	}
+	list_argument = index_list(list_argument);
 	return (list_argument);
 }
 
@@ -69,6 +73,25 @@ t_arg	*add_front_li(t_arg *list, int number)
 	node->argument = number;
 	list = node;
 	list->next = sv_list;
+	return (list);
+}
+
+t_arg	*add_back_li(t_arg *list, int number)
+{
+	t_arg	*cp_list;
+	t_arg	*node;
+
+	cp_list = list;
+	node = (t_arg *)malloc(sizeof(t_arg));
+	if (!node)
+		return (NULL);
+	node->argument = number;
+	while (list->next != NULL)
+		list = list->next;
+	list->next = node;
+	list = list->next;
+	list->next= NULL;
+	list = cp_list;
 	return (list);
 }
 

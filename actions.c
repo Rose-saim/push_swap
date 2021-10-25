@@ -64,10 +64,10 @@ t_arg	*rotate_a(t_arg *list)
 	t_arg	*sv_list;
 	t_arg	*node;
 
+	sv_list = list->next;
 	node = malloc(sizeof(t_arg));
 	if (!node)
 		return (NULL);
-	sv_list = list->next;
 	node->argument = list->argument;
 	while (list->next != NULL)
 		list = list->next;
