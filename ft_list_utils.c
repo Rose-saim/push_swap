@@ -10,7 +10,6 @@ t_arg	*list_number_of_argument(char **argv)
 	int		argument;
 	t_arg	*list_argument;
 
-
 	argument = 1;
 	list_argument = NULL;
 	while (argv[argument])
@@ -41,7 +40,6 @@ t_arg	*list_number_of_argument(char **argv)
 		}
 		argument++;
 	}
-	list_argument = index_list(list_argument);
 	return (list_argument);
 }
 
@@ -64,7 +62,6 @@ t_arg	*add_front_li(t_arg *list, int number)
 {
 	t_arg	*sv_list;
 	t_arg	*node;
-	int		i = 0;
 
 	sv_list = list;
 	node = (t_arg *)malloc(sizeof(t_arg));

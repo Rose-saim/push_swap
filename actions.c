@@ -4,11 +4,11 @@ t_arg	*swap_a(t_arg *list)
 {
 	t_arg	*cp_list;
 
+	cp_list = list;
 	if (!cp_list)
 		return (NULL);
 	if (list->next == NULL)
 		return (list);
-	cp_list = list;
 	cp_list  = cp_list->next;
 	list->next = cp_list->next;
 	cp_list->next = list;
@@ -19,11 +19,11 @@ t_arg	*swap_b(t_arg *list)
 {
 	t_arg	*cp_list;
 
+	cp_list = list;
 	if (!cp_list)
 		return (NULL);
 	if (list->next == NULL)
 		return (list);
-	cp_list = list;
 	cp_list  = cp_list->next;
 	list->next = cp_list->next;
 	cp_list->next = list;
@@ -41,6 +41,7 @@ void	push_a(t_arg **list_a, t_arg **list_b)
 {
 	t_arg	**sv_list_b;
 
+	sv_list_b = NULL;
 	*sv_list_b = (*list_b)->next;
 	(*list_b)->next = *list_a;
 	*list_a = *list_b;

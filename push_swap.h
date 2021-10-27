@@ -18,6 +18,8 @@ int		ft_error(char **argv, int size);
 int		ft_atoi(char *str);
 int		ft_mediane(t_arg *list);
 int	 	strclen(char *str, char c);
+int	total_number(t_arg *list);
+int	numbers_argument(t_arg *list);
 
 t_arg	*add_back_li(t_arg *list, int number);
 t_arg	*add_front_li(t_arg *list, int number);

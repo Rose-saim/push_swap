@@ -7,24 +7,22 @@ t_arg	*push_swap(int argc, char **argv)
 	t_arg	*cp_list_argument;
 	int		mediane;
 
+	(void)argc;
 	list_argument_a = list_number_of_argument(argv);
 	list_argument_b = NULL;
 	cp_list_argument = list_argument_a;
 	mediane = ft_mediane(list_argument_a);
 	printf("mediane|%d|\n", mediane);
-	while (list_argument_a != NULL)
+	while (list_argument_a->index < numbers_argument(list_argument_a))
 	{
-		printf("list_argument_a isless thant meiane|%d|\n", list_argument_a->argument);
-		if (list_argument_a->argument <= mediane)
-		{
+		list_argument_a = index_list(list_argument_a);
+		// printf("%d|%d\n", list_argument_a->index, list_argument_a->argument);
+		if (list_argument_a->argument < mediane)
 			push_b(&list_argument_a, &list_argument_b);
-		}
 		else	
 			list_argument_a = rotate_a(list_argument_a);
-		printf("list_argument_a isless thant meiane|%d|", list_argument_a->argument);
-		while (list_argument_a != NULL)
-			list_argument_a = list_argument_a->next;
 	}
+		list_argument_a = index_list(list_argument_a);
 	return(list_argument_a);
 }
 
@@ -35,7 +33,7 @@ int main(int argc, char **argv)
 	list = push_swap(argc, argv);
 	while (list != NULL)
 	{
-		printf("%d\n", list->argument);
+		printf("ft%d|%d\n", list->index, list->argument);
 		list = list->next;
 	}
 }
