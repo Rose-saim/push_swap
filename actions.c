@@ -39,23 +39,30 @@ void swap_both(t_arg **list_a, t_arg **list_b)
 
 void	push_a(t_arg **list_a, t_arg **list_b)
 {
-	t_arg	**sv_list_b;
+	t_arg	*sv_list_a;
+	t_arg	*sv_list_b;
 
-	sv_list_b = NULL;
-	*sv_list_b = (*list_b)->next;
-	(*list_b)->next = *list_a;
+	sv_list_a = *list_a;
+	if (*list_b != NULL)
+		sv_list_b = (*list_b)->next;
+	(*list_b)->next = NULL;
 	*list_a = *list_b;
-	*list_b = *sv_list_b;
+	(*list_a)->next = sv_list_a;
+	*list_b = sv_list_b;
 	return ;
 }
 
 void	push_b(t_arg **list_a, t_arg **list_b)
 {
 	t_arg	*sv_list_a;
+	t_arg	*sv_list_b;
 
-	sv_list_a = (*list_a)->next;
-	(*list_a)->next = *list_b;
+	sv_list_b = *list_b;
+	if (*list_a != NULL)
+		sv_list_a = (*list_a)->next;
+	(*list_a)->next = NULL;
 	*list_b = *list_a;
+	(*list_b)->next = sv_list_b;
 	*list_a = sv_list_a;
 	return ;
 }
@@ -70,7 +77,7 @@ t_arg	*rotate_a(t_arg *list)
 	if (!node)
 		return (NULL);
 	node->argument = list->argument;
-	while (list->next != NULL)
+	while (list->next != NULL && list !=NULL)
 		list = list->next;
 	list->next = node;
 	list->next->next = NULL;
@@ -83,13 +90,19 @@ t_arg	*rotate_b(t_arg *list)
 	t_arg	*sv_list;
 	t_arg	*node;
 
+	puts("it's your malloc");
+	sv_list = list->next;
 	node = malloc(sizeof(t_arg));
 	if (!node)
 		return (NULL);
-	sv_list = list->next;
+	puts("it's your transfer");
 	node->argument = list->argument;
+		printf("%d|\n", list->argument);
+	list = list->next;
+		printf("%d|\n", list->argument);
 	while (list->next != NULL)
-		list = list->next;
+		list= list->next;
+	puts("it's eqaulities");
 	list->next = node;
 	list->next->next = NULL;
 	list = sv_list;

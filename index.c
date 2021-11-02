@@ -62,26 +62,3 @@ t_arg   *index_search(t_arg *list, t_array array[])
     }
     return (cp_list);
 }
-
-
-t_arg *init(int num)
-{
-	t_arg *list_a;
-	t_arg *cp_list_a;
-	int		i = 5;
-	int		o = 0;
-
-	list_a = (t_arg *)malloc(sizeof(t_arg));
-	list_a->argument = 5;
-	cp_list_a = list_a;
-	while (o < 5)
-	{
-        i *= -10.5;
-		list_a->next = (t_arg *)malloc(sizeof(t_arg));
-		list_a = list_a->next;
-		list_a->argument += i;
-        o++;
-	}
-	list_a = cp_list_a;
-	return (list_a);
-}
