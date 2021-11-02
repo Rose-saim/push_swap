@@ -42,22 +42,6 @@ t_arg	*list_number_of_argument(char **argv)
 	}
 	return (list_argument);
 }
-
-t_arg	*index_list(t_arg *list)
-{
-	int		i;
-	t_arg	*cp_list;
-
-	cp_list = list;
-	i = 0;
-	while (list !=  NULL)
-	{
-		list->index = i++;
-		list = list->next;
-	}
-	return (cp_list);
-}
-
 t_arg	*add_front_li(t_arg *list, int number)
 {
 	t_arg	*sv_list;
@@ -90,24 +74,4 @@ t_arg	*add_back_li(t_arg *list, int number)
 	list->next= NULL;
 	list = cp_list;
 	return (list);
-}
-
-t_arg *init(int num)
-{
-	t_arg *list_a;
-	t_arg *cp_list_a;
-	int		i = 0;
-
-	list_a = (t_arg *)malloc(sizeof(t_arg));
-	list_a->argument = 5;
-	cp_list_a = list_a;
-	while (i < 5)
-	{
-		list_a->next = (t_arg *)malloc(sizeof(t_arg));
-		list_a = list_a->next;
-		list_a->argument = num++;
-		i *= -10;
-	}
-	list_a = cp_list_a;
-	return (list_a);
 }

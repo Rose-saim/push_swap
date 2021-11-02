@@ -11,7 +11,7 @@ void swap(int *a, int *b)
     return;
 }
 
-void quick_sort(int tab[], int first, int last)
+void quick_sort(t_array tab[], int first, int last)
 {
     int pivot;
     int begin_first;
@@ -24,15 +24,15 @@ void quick_sort(int tab[], int first, int last)
         begin_end = last;
         while (begin_first < begin_end) 
         {
-            while(tab[begin_first] <= tab[pivot] && begin_first < last)
+            while(tab[begin_first].argument <= tab[pivot].argument && begin_first < last)
                 begin_first++;
-            while(tab[begin_end] > tab[pivot])
+            while(tab[begin_end].argument > tab[pivot].argument)
                 begin_end--;
             if(begin_first < begin_end) {
-                swap(&tab[begin_first], &tab[begin_end]);
+                swap(&tab[begin_first].argument, &tab[begin_end].argument);
             }
         }
-        swap(&tab[pivot], &tab[begin_end]);
+        swap(&tab[pivot].argument, &tab[begin_end].argument);
         quick_sort(tab, first, begin_end - 1);
         quick_sort(tab, begin_end + 1, last);
     }
