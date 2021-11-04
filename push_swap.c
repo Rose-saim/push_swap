@@ -4,16 +4,17 @@ t_arg	*push_swap(int argc, char **argv)
 {
 	t_arg	*list_a;
 	t_arg	*list_b;
+	int		size;
 	int		cp_list_argument_a;
 
-	puts("it's list number");
+	list_b = NULL;
 	list_a = list_number_of_argument(argv);
-	puts("it's index list");
-	list_a = index_list(list_a, 9);
+	size = size_of_list(list_a);
+	list_a = index_list(list_a, size);
 	puts("it's tanslate list");
 	list_a = translate_index_to_binary(list_a);
 	puts("it's radick sort");
-	radick_sort(list_a, list_b, 9);
+	radick_sort(&list_a, &list_b, rank_of_zero(list_a, 0));
 	return(list_a);
 }
 

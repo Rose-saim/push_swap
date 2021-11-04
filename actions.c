@@ -52,31 +52,32 @@ void	push_a(t_arg **list_a, t_arg **list_b)
 	return ;
 }
 
-void	push_b(t_arg **list_a, t_arg **list_b)
+void	push_b(t_arg *list_a, t_arg *list_b)
 {
-	t_arg	*sv_list_a;
-	
-	sv_list_a = (*list_a)->next;
+	t_arg	*node;
 
-	(*list_a)->next = *list_b;
-	*list_b = *list_a;
-	(*list_a) = sv_list_a;
+	printf("before|%d||\n", list_a->argument);
+	node = list_a;
+	list_a = list_a->next;
+	node->next = list_b;
+	list_b = node;
+	printf("after|%d||\n", list_b->argument);
 	return ;
 }
 
 t_arg	*rotate_a(t_arg *list)
 {	
-	t_arg	node;
+	t_arg	*node;
 	t_arg	*sv_list;
 
-	node = *list;
 	sv_list = list->next;
-	while (list->next != NULL)
+	node	= list;
+	while (list->next)
 		list = list->next;
-	list->next = &node;
-	list->next->next = NULL;
-	list = sv_list;
-	return (list);
+	list->next = node;
+	list = list->next;
+	list->next = NULL;
+	return (sv_list);
 }
 
 t_arg	*rotate_b(t_arg *list)

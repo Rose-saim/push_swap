@@ -52,17 +52,21 @@ t_arg	*translate_index_to_binary(t_arg *list)
 	t_arg	*cp_list;
 	int		array_index[10];
 	int		i;
+	int		o;
 
 	cp_list = list;
 	while (list)
 	{
+		o = 0;
 		i = 9;
 		while (i >= 0)
 		{
-			list->index_bit[i] = (list->index >> i)&1;
+			list->index_bit[o] = (list->index >> i)&1;
+			++o;
 			--i;
 		}
 		list = list->next;
 	}
+	list = cp_list;
 	return (cp_list);
 }

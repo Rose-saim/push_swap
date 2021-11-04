@@ -16,18 +16,21 @@ int size_of_list(t_arg *list)
 t_arg    *index_list(t_arg *list, int size)
 {
     int         i;
-    t_array  array[size];
+    t_array  *array;
 
+    array = malloc(sizeof(t_array) * (size + 1));
+    if (!array)
+        return (NULL);
     list_to_array(list, array);
-    i = 0;
     quick_sort(array, 0, size);
+    i = 0;
     while (i <= size)
     {
         array[i].index = i;
-        i++;
+        ++i;
     }
     list = index_search(list, array);
-    i = 0;
+    free(array);
     return (list);
 }
 
@@ -50,13 +53,7 @@ t_arg   *index_search(t_arg *list, t_array array[])
     t_arg   *cp_list;
     int     i;
 
-    cp_list = list; 
-    i =0;
-    while (i < 5)
-    {
-        printf("list %d|%d\n", array[i].index, array[i].argument);
-        i++;
-    }
+    cp_list = list;
     while (list)
     {
         i = 0;

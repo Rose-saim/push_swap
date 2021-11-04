@@ -1,14 +1,14 @@
 #include "push_swap.h"
 
-void   radick_sort(t_arg *list_a, t_arg *list_b, int ranks)
+void   radick_sort(t_arg **list_a, t_arg **list_b, int ranks)
 {
     while (ranks < 10)
     {
-    puts("its stack a");
-        stack_a(list_a, list_b, ranks);
-    puts("it's stack b");
-        stack_b(list_a, list_b, ranks);
-    puts("it's a while");
+        stack_a(*list_a, *list_b, ranks);
+		puts("end2");
+        puts("it's stack b");
+        stack_b(*list_a, *list_b, ranks);
+        puts("it's a while");
         ++ranks;
     }
     puts("no problem");
@@ -18,22 +18,21 @@ void   radick_sort(t_arg *list_a, t_arg *list_b, int ranks)
 int rank_of_zero(t_arg *list, int ranks)
 {
     t_arg   *cp_list;
-    
+
     cp_list = list;
-    if (ranks == 0)
-        return (0);
     while (list)
     {
         if (list->index_bit[ranks] == 1)
             return (ranks);
         list = list->next;
     }
-    return (rank_of_zero(cp_list, ranks - 1));
+    return (rank_of_zero(cp_list, ranks + 1));
 }
 
 int verif_list(t_arg *list, int ranks)
 {
-    while (list)
+    printf("||%d\n", list->argument);
+    while (list != NULL && list->next != NULL)
     {
         if (list->index_bit[ranks] == 0)
             return (0);
@@ -44,27 +43,26 @@ int verif_list(t_arg *list, int ranks)
 
 void stack_a(t_arg *list_a, t_arg *list_b, int ranks)
 {
-
     while (verif_list(list_a, ranks) == 0)
     {
         if (list_a->index_bit[ranks] == 1)
-          list_a = rotate_a(list_a);
+            list_a = rotate_a(list_a);
         if (list_a->index_bit[ranks] == 0)
-            push_b(&list_a, &list_b);
+            push_b(list_a, list_b);
+        printf("value_a|%d\n", list_a->argument);
     }
-    return ;
 }
 
 void stack_b(t_arg *list_a, t_arg *list_b, int ranks)
 {
+    puts("LOL");
     while (verif_list(list_a, ranks) == 0)
     {
         if (list_a->index_bit[ranks] == 1)
           list_a = rotate_a(list_b);
         if (list_a->index_bit[ranks] == 0)
-            push_b(&list_b, &list_a);
+            push_b(list_b, list_a);
     }
-    return ;
 }
 
 t_arg *init(int num)
