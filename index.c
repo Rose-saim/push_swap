@@ -50,7 +50,13 @@ t_arg   *index_search(t_arg *list, t_array array[])
     t_arg   *cp_list;
     int     i;
 
-    cp_list = list;
+    cp_list = list; 
+    i =0;
+    while (i < 5)
+    {
+        printf("list %d|%d\n", array[i].index, array[i].argument);
+        i++;
+    }
     while (list)
     {
         i = 0;

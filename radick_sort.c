@@ -2,8 +2,7 @@
 
 void   radick_sort(t_arg *list_a, t_arg *list_b, int ranks)
 {
-    ranks = rank_of_zero(list_a, ranks);
-    while (ranks != 0)
+    while (ranks < 10)
     {
     puts("its stack a");
         stack_a(list_a, list_b, ranks);
@@ -32,32 +31,38 @@ int rank_of_zero(t_arg *list, int ranks)
     return (rank_of_zero(cp_list, ranks - 1));
 }
 
+int verif_list(t_arg *list, int ranks)
+{
+    while (list)
+    {
+        if (list->index_bit[ranks] == 0)
+            return (0);
+        list = list->next;
+    }
+    return (1);
+}
+
 void stack_a(t_arg *list_a, t_arg *list_b, int ranks)
 {
-    int   i;
 
-    i = 0;
-    while (i < 5)
+    while (verif_list(list_a, ranks) == 0)
     {
-        if (list_a->index_bit[ranks] != 1)
+        if (list_a->index_bit[ranks] == 1)
+          list_a = rotate_a(list_a);
+        if (list_a->index_bit[ranks] == 0)
             push_b(&list_a, &list_b);
-        list_a = rotate_a(list_a);
-        i++;
     }
     return ;
 }
 
 void stack_b(t_arg *list_a, t_arg *list_b, int ranks)
 {
-    int i;
-    
-    i = 0;
-    while (i < 5)
+    while (verif_list(list_a, ranks) == 0)
     {
-        if (list_b->index_bit[ranks] != 0)
+        if (list_a->index_bit[ranks] == 1)
+          list_a = rotate_a(list_b);
+        if (list_a->index_bit[ranks] == 0)
             push_b(&list_b, &list_a);
-        list_b = rotate_b(list_b);
-        i++;
     }
     return ;
 }
