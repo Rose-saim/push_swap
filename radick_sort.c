@@ -1,13 +1,14 @@
 #include "push_swap.h"
 
-void   radick_sort(t_arg **list_a, t_arg **list_b, int ranks)
+void   radick_sort(t_arg *list_a, t_arg *list_b, int ranks)
 {
     while (ranks < 10)
     {
-        stack_a(*list_a, *list_b, ranks);
-		puts("end2");
+
+        stack_a(&list_a, &list_b, ranks);
+    exit (0);
         puts("it's stack b");
-        stack_b(*list_a, *list_b, ranks);
+        stack_b(list_a, list_b, ranks);
         puts("it's a while");
         ++ranks;
     }
@@ -31,7 +32,6 @@ int rank_of_zero(t_arg *list, int ranks)
 
 int verif_list(t_arg *list, int ranks)
 {
-    printf("||%d\n", list->argument);
     while (list != NULL && list->next != NULL)
     {
         if (list->index_bit[ranks] == 0)
@@ -41,15 +41,22 @@ int verif_list(t_arg *list, int ranks)
     return (1);
 }
 
-void stack_a(t_arg *list_a, t_arg *list_b, int ranks)
+
+void    test(t_arg *list)
 {
-    while (verif_list(list_a, ranks) == 0)
+    list->argument += 2;
+}
+void stack_a(t_arg **list_a, t_arg **list_b, int ranks)
+{
+    while (verif_list((*list_a), ranks) == 0)
     {
-        if (list_a->index_bit[ranks] == 1)
-            list_a = rotate_a(list_a);
-        if (list_a->index_bit[ranks] == 0)
+        if ((*list_a)->index_bit[ranks] == 1)
+            (*list_a) = rotate_a((*list_a));
+        if ((*list_a)->index_bit[ranks] == 0)
+        {
             push_b(list_a, list_b);
-        printf("value_a|%d\n", list_a->argument);
+
+        }
     }
 }
 

@@ -14,7 +14,7 @@ t_arg	*push_swap(int argc, char **argv)
 	puts("it's tanslate list");
 	list_a = translate_index_to_binary(list_a);
 	puts("it's radick sort");
-	radick_sort(&list_a, &list_b, rank_of_zero(list_a, 0));
+	radick_sort(list_a, list_b, rank_of_zero(list_a, 0));
 	return(list_a);
 }
 

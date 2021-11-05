@@ -52,16 +52,14 @@ void	push_a(t_arg **list_a, t_arg **list_b)
 	return ;
 }
 
-void	push_b(t_arg *list_a, t_arg *list_b)
+void	push_b(t_arg **list_a, t_arg **list_b)
 {
 	t_arg	*node;
 
-	printf("before|%d||\n", list_a->argument);
-	node = list_a;
-	list_a = list_a->next;
-	node->next = list_b;
-	list_b = node;
-	printf("after|%d||\n", list_b->argument);
+	node = *list_a;
+	*list_a = (*list_a)->next;
+	node->next = (*list_b);
+	(*list_b) = node;
 	return ;
 }
 

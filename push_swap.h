@@ -36,9 +36,9 @@ t_arg	*translate_index_to_binary(t_arg *list);
 
 void    list_to_array(t_arg *list, t_array array[]);
 void 	quick_sort(t_array tab[], int first, int last);
-void    radick_sort(t_arg **list_a, t_arg **list_b, int ranks);
+void    radick_sort(t_arg *list_a, t_arg *list_b, int ranks);
 void 	swap(int *a, int *b);
-void stack_a(t_arg *list_a, t_arg *list_b, int ranks);
+void stack_a(t_arg **list_a, t_arg **list_b, int ranks);
 void stack_b(t_arg *list_a, t_arg *list_b, int ranks);
 
 t_arg	*reverse_rotate_a(t_arg *list);
@@ -50,7 +50,7 @@ t_arg	*swap_b(t_arg *list);
 void	both_rotate(t_arg **list_a, t_arg **list_b);
 void	both_reverse_rotate(t_arg **list_a, t_arg **list_b);
 void	push_a(t_arg **list_a, t_arg **list_b);
-void	push_b(t_arg *list_a, t_arg *list_b);
+void	push_b(t_arg **list_a, t_arg **list_b);
 void	swap_both(t_arg **list_a, t_arg **list_b);
 
 t_arg *init(int num);
