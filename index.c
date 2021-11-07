@@ -2,66 +2,66 @@
 
 int size_of_list(t_arg *list)
 {
-    int size;
+	int size;
 
-    size = 0;
-    while (list)
-    {
-        ++size;
-        list = list->next;
-    }
-    return (size);
+	size = 0;
+	while (list)
+	{
+		++size;
+		list = list->next;
+	}
+	return (size);
 }
 
-t_arg    *index_list(t_arg *list, int size)
+t_arg	*index_list(t_arg *list, int size)
 {
-    int         i;
-    t_array  *array;
+	int		 i;
+	t_array  *array;
 
-    array = malloc(sizeof(t_array) * (size + 1));
-    if (!array)
-        return (NULL);
-    list_to_array(list, array);
-    quick_sort(array, 0, size);
-    i = 0;
-    while (i <= size)
-    {
-        array[i].index = i;
-        ++i;
-    }
-    list = index_search(list, array);
-    free(array);
-    return (list);
+	i = 0;
+	array = malloc(sizeof(t_array) * (size + 1));
+	if (!array)
+		return (NULL);
+	list_to_array(list, array);
+	quick_sort(array, 0, size - 1);
+	while (i < size)
+	{
+		array[i].index = i;
+		++i;
+	}
+	list = index_search(list, array);
+	free(array);
+	return (list);
 }
 
-void    list_to_array(t_arg *list, t_array array[])
+void	list_to_array(t_arg *list, t_array array[])
 {
-    int i;
+	int i;
 
-    i = 0;
-    while (list)
-    {
-        array[i].argument = list->argument;
-        list = list->next;
-        i++;
-    }
-    return ;
+	i = 0;
+	while (list)
+	{
+		array[i].argument = list->argument;
+		list = list->next;
+		i++;
+	}
+	return ;
 }
 
 t_arg   *index_search(t_arg *list, t_array array[])
 {
-    t_arg   *cp_list;
-    int     i;
+	t_arg   *cp_list;
+	int	 i;
 
-    cp_list = list;
-    while (list)
-    {
-        i = 0;
-        while (list->argument != array[i].argument)
-            i++;
-        if (list->argument == array[i].argument)
-            list->index = array[i].index;
-        list = list->next;
-    }
-    return (cp_list);
+	cp_list = list;
+	while (list)
+	{
+		i = 0;
+		while (list->argument != array[i].argument)
+			i++;
+		if (list->argument == array[i].argument)
+			list->index = array[i].index;
+		list = list->next;
+	}
+	return (cp_list);
 }

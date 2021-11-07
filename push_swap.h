@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 typedef struct	s_array
 {
@@ -34,25 +35,26 @@ t_arg   *index_search(t_arg *list, t_array array[]);
 t_arg	*list_number_of_argument(char **argv);
 t_arg	*translate_index_to_binary(t_arg *list);
 
-void    list_to_array(t_arg *list, t_array array[]);
+void	list_to_array(t_arg *list, t_array array[]);
 void 	quick_sort(t_array tab[], int first, int last);
-void    radick_sort(t_arg *list_a, t_arg *list_b, int ranks);
+t_arg	*radick_sort(t_arg *list_a, t_arg *list_b, int ranks);
 void 	swap(int *a, int *b);
 void stack_a(t_arg **list_a, t_arg **list_b, int ranks);
-void stack_b(t_arg *list_a, t_arg *list_b, int ranks);
 
-t_arg	*reverse_rotate_a(t_arg *list);
-t_arg	*reverse_rotate_b(t_arg *list);
-t_arg	*rotate_a(t_arg *list);
-t_arg	*rotate_b(t_arg *list);
-t_arg	*swap_a(t_arg *list);
-t_arg	*swap_b(t_arg *list);
+void stack_b(t_arg **list_a, t_arg **list_b, int ranks);
+
+
+void   ft_swap(t_arg **list);
+t_arg	*reverse_rotate(t_arg *list);
+t_arg	*rotate(t_arg *list);
+t_arg	*swap_stack(t_arg *list);
 void	both_rotate(t_arg **list_a, t_arg **list_b);
 void	both_reverse_rotate(t_arg **list_a, t_arg **list_b);
-void	push_a(t_arg **list_a, t_arg **list_b);
-void	push_b(t_arg **list_a, t_arg **list_b);
+void	push(t_arg **list_a, t_arg **list_b);
 void	swap_both(t_arg **list_a, t_arg **list_b);
 
+
+void	  print_list(t_arg *list);
 t_arg *init(int num);
 
 #endif

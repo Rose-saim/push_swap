@@ -50,7 +50,6 @@ int	ft_atoi(char *str)
 t_arg	*translate_index_to_binary(t_arg *list)
 {
 	t_arg	*cp_list;
-	int		array_index[10];
 	int		i;
 	int		o;
 
