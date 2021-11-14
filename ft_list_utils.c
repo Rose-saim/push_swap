@@ -1,5 +1,6 @@
 #include "push_swap.h"
 
+
 t_arg	*list_number_of_argument(char **argv)
 {
 	char	*number;
@@ -33,28 +34,11 @@ t_arg	*list_number_of_argument(char **argv)
 				o++;
 			}
 			number_node = ft_atoi(number);
-			if (!list_argument)
-				list_argument = add_front_li(list_argument, number_node);
-			else
-				list_argument = add_back_li(list_argument, number_node);
+			list_argument = add_back_li(list_argument, number_node);
 		}
 		argument++;
 	}
 	return (list_argument);
-}
-t_arg	*add_front_li(t_arg *list, int number)
-{
-	t_arg	*sv_list;
-	t_arg	*node;
-
-	sv_list = list;
-	node = (t_arg *)malloc(sizeof(t_arg));
-	if (!node)
-		return (NULL);
-	node->argument = number;
-	list = node;
-	list->next = sv_list;
-	return (list);
 }
 
 t_arg	*add_back_li(t_arg *list, int number)
@@ -64,14 +48,42 @@ t_arg	*add_back_li(t_arg *list, int number)
 
 	cp_list = list;
 	node = (t_arg *)malloc(sizeof(t_arg));
-	if (!node)
-		return (NULL);
-	node->argument = number;
-	while (list->next != NULL)
+	if (node)
+	{
+		node->argument = number;
+		node->next = NULL;
+		if (list == NULL)
+			return (node);
+		else
+		{
+			while (list->next)
+				list = list->next;
+			list->next = node;
+		}
+	}
+	return (cp_list);
+}
+
+void	free_lst(t_arg *list)
+{
+	t_arg *to_delete;
+
+	while (list)
+	{
+		to_delete = list;
 		list = list->next;
-	list->next = node;
-	list = list->next;
-	list->next= NULL;
-	list = cp_list;
-	return (list);
+		free(to_delete);
+	}
+	return ;
+}
+
+int	list_sort(t_arg *list)
+{
+	while (list)
+	{
+		if (list->next && list->index > list->next->index)
+			return (0);
+		list = list->next;
+	}
+	return (1);
 }

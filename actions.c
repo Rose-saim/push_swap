@@ -5,7 +5,7 @@ t_arg	*swap_stack(t_arg *list)
 	t_arg	*node;
 
 	node = list->next;
-	list->next = NULL;
+	list->next = list->next->next;
 	node->next = list;
 	return (node);
 }
@@ -17,14 +17,14 @@ void swap_both(t_arg **list_a, t_arg **list_b)
 	return ;
 }
 
-void	push(t_arg **list_b, t_arg **list_a)
+void	push(t_arg **list_a, t_arg **list_b)
 {
 	t_arg	*node;
 
-	node = *list_b;
-	*list_b = (*list_b)->next;
-	node->next = (*list_a);
-	(*list_a) = node;
+	node = *list_a;
+	*list_a = (*list_a)->next;
+	node->next = (*list_b);
+	(*list_b) = node;
 	return ;
 }
 
