@@ -6,15 +6,15 @@
 /*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/11 20:11:54 by myrmarti          #+#    #+#             */
-/*   Updated: 2021/11/11 20:13:01 by myrmarti         ###   ########.fr       */
+/*   Updated: 2021/11/15 17:21:49 by myrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int size_of_list(t_arg *list)
+int	size_of_list(t_arg *list)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	while (list)
@@ -27,8 +27,8 @@ int size_of_list(t_arg *list)
 
 t_arg	*index_list(t_arg *list, int size)
 {
-	int		 i;
-	t_array  *array;
+	int		i;
+	t_array	*array;
 
 	i = 0;
 	array = malloc(sizeof(t_array) * (size + 1));
@@ -48,7 +48,7 @@ t_arg	*index_list(t_arg *list, int size)
 
 void	list_to_array(t_arg *list, t_array array[])
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (list)
@@ -60,10 +60,10 @@ void	list_to_array(t_arg *list, t_array array[])
 	return ;
 }
 
-t_arg   *index_search(t_arg *list, t_array array[])
+t_arg	*index_search(t_arg *list, t_array array[])
 {
-	t_arg   *cp_list;
-	int	 i;
+	t_arg	*cp_list;
+	int		i;
 
 	cp_list = list;
 	while (list)

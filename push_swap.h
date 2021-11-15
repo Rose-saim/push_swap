@@ -1,48 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/15 17:20:08 by myrmarti          #+#    #+#             */
+/*   Updated: 2021/11/15 17:48:09 by myrmarti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
-typedef struct	s_array
+typedef struct s_array
 {
 	int	argument;
 	int	index;
 }				t_array;
 
-typedef	struct	s_arg
+typedef struct s_arg
 {
 	int				argument;
 	int				index;
-	struct s_arg	*prev;
 	struct s_arg	*next;
 }				t_arg;
-
-typedef	struct	db_list_repere
-{
-	int		size;
-	t_arg	*first;
-	t_arg	*last;
-}				db_list;
-
-char	*copy(char *str_arg, int size);
-int		strclen(char *str, int c);
-
-t_arg	*add_back_li(t_arg *list,int number);
-t_arg	*list_number_of_argument(char **argv);
-int		size_of_list(t_arg *list);
-int		list_sort(t_arg *list_a);
-void	free_lst(t_arg *list);
-
-int		ft_atoi(char *str);
-
-t_arg   *index_list(t_arg *list, int size);
-t_arg   *index_search(t_arg *list, t_array array[]);
-
-void	list_to_array(t_arg *list, t_array array[]);
-void 	quick_sort(t_array tab[], int first, int last);
-void 	swap(int *a, int *b);
 
 t_arg	*reverse_rotate(t_arg *list);
 t_arg	*rotate(t_arg *list);
@@ -52,14 +38,34 @@ void	both_reverse_rotate(t_arg **list_a, t_arg **list_b);
 void	push(t_arg **list_a, t_arg **list_b);
 void	swap_both(t_arg **list_a, t_arg **list_b);
 
-t_arg   *radix_sort(t_arg *list_a, t_arg *list_b, int ranks);
+char	*copy(char *str_arg, int size);
+int		strclen(char *str, int c);
 
-t_arg 	*three_numbers(t_arg *list);
-t_arg   *five_numbers(t_arg *list_a, t_arg *list_b);
+int		ft_atoi(char *str, t_arg *list);
+t_arg	*copy_list(char **argv, int argument, int size, t_arg *list_argument);
+t_arg	*list_number_of_argument(char **argv);
+
+t_arg	*add_back_li(t_arg *list, int number);
+int		size_of_list(t_arg *list);
+int		list_sort(t_arg *list_a);
+int		lst_error(char *number);
+void	empty_list(t_arg **list_a, t_arg **list_b);
+void	free_lst(t_arg *list);
+
+t_arg	*index_list(t_arg *list, int size);
+t_arg	*index_search(t_arg *list, t_array array[]);
+void	list_to_array(t_arg *list, t_array array[]);
+void	quick_sort(t_array tab[], int first, int last);
+void	swap(int *a, int *b);
+
+t_arg	*radix_sort(t_arg *list_a, t_arg *list_b, int ranks);
+void	action_radix(t_arg **list_a, t_arg **list_b, int i);
+
+t_arg	*three_numbers(t_arg *list);
+void	less_three(t_arg **list_a, t_arg **list_b);
+t_arg	*little_numbers(t_arg *list_a, t_arg *list_b);
 
 void	push_swap(int argc, char **argv);
-
-void	  print_list(t_arg *list);
-t_arg *init(int num);
+int		ft_error(t_arg *list);
 
 #endif

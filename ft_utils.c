@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/15 16:14:38 by myrmarti          #+#    #+#             */
+/*   Updated: 2021/11/15 16:55:54 by myrmarti         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	strclen(char *str, int c)
@@ -13,8 +25,9 @@ int	strclen(char *str, int c)
 char	*copy(char *str_arg, int size)
 {
 	static char	str_final[12];
-	int		i = 0;
+	int			i;
 
+	i = 0;
 	while (str_arg && size > 0)
 	{
 		str_final[i] = *str_arg;
@@ -26,10 +39,10 @@ char	*copy(char *str_arg, int size)
 	return (str_final);
 }
 
-int	ft_atoi(char *str)
+int	ft_atoi(char *str, t_arg *list)
 {
-	int	num;
-	int	sign;
+	long int	num;
+	int			sign;
 
 	num = 0;
 	sign = 1;
@@ -43,6 +56,12 @@ int	ft_atoi(char *str)
 	{
 		num = num * 10 + (*str - '0');
 		str++;
+	}
+	if (num * sign > 2147483647 || num * sign < -2147483648)
+	{
+		free_lst(list);
+		write(1, "Error\n", 6);
+		exit(0);
 	}
 	return (num * sign);
 }
