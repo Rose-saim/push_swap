@@ -6,7 +6,7 @@
 /*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:14:48 by myrmarti          #+#    #+#             */
-/*   Updated: 2021/11/15 16:14:49 by myrmarti         ###   ########.fr       */
+/*   Updated: 2021/11/17 12:10:35 by myrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,15 @@
 t_arg	*reverse_rotate(t_arg *list)
 {
 	t_arg	*node;
-	t_arg	*sv_list;
+	t_arg	*head_list;
 
-	node = (t_arg *)malloc(sizeof(t_arg));
-	if (!node)
-		return (0);
-	sv_list = list;
-	while (list->next->next != NULL)
+	head_list = list;
+	while (list->next->next)
 		list = list->next;
-	node->argument = list->next->argument;
+	node = list->next;
 	list->next = NULL;
-	list = sv_list;
-	list = node;
-	list->next = sv_list;
-	return (list);
+	node->next = head_list;
+	return (node);
 }
 
 void	both_reverse_rotate(t_arg **list_a, t_arg **list_b)

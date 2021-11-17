@@ -6,7 +6,7 @@
 /*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:14:38 by myrmarti          #+#    #+#             */
-/*   Updated: 2021/11/15 16:55:54 by myrmarti         ###   ########.fr       */
+/*   Updated: 2021/11/17 13:17:38 by myrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,17 @@ char	*copy(char *str_arg, int size)
 
 int	ft_atoi(char *str, t_arg *list)
 {
-	long int	num;
+	int long	num;
 	int			sign;
 
 	num = 0;
 	sign = 1;
+	if (strclen(str, 0) > 11)
+		error_free(list);
 	if (*str == '-' ||*str == '+')
 	{
+		if (!(*(str + 1) >= '0' && *(str + 1) <= '9'))
+			error_free(list);
 		if (*str == '-')
 			sign *= -1;
 		str++;
@@ -58,10 +62,18 @@ int	ft_atoi(char *str, t_arg *list)
 		str++;
 	}
 	if (num * sign > 2147483647 || num * sign < -2147483648)
-	{
-		free_lst(list);
-		write(1, "Error\n", 6);
-		exit(0);
-	}
+		error_free(list);
 	return (num * sign);
+}
+
+void	error_free(t_arg *list)
+{
+	free_lst(list);
+	write_error();
+}
+
+void	write_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(0);
 }

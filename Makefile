@@ -1,7 +1,7 @@
 INC_DIR		= .
 MANDA_DIR	= .
 
-MANDA_NAMES	=	five_numbers.c ft_list_utils.c ft_utils.c index.c \
+MANDA_NAMES	=	little_numbers.c ft_list_utils.c ft_utils.c index.c \
 				push_swap.c quick_sort.c radix_sort.c actions.c \
 				error.c action_next.c list_utils_next.c
 

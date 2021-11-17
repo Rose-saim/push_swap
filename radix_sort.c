@@ -6,7 +6,7 @@
 /*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:44:46 by myrmarti          #+#    #+#             */
-/*   Updated: 2021/11/15 17:44:47 by myrmarti         ###   ########.fr       */
+/*   Updated: 2021/11/16 15:45:11 by myrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_arg	*radix_sort(t_arg *list_a, t_arg *list_b, int ranks)
 
 	size = size_of_list(list_a);
 	i = 0;
-	while (i < 9)
+	while (i < 9 && no_bit(list_a, i) == 0)
 	{
 		ranks = 0;
 		while (ranks < size)
@@ -48,4 +48,15 @@ void	action_radix(t_arg **list_a, t_arg **list_b, int i)
 		push(list_a, list_b);
 		write(1, "pb\n", 3);
 	}
+}
+
+int	no_bit(t_arg *list, int i)
+{
+	while (list)
+	{
+		if (((list->index >> i) & 1) == 1)
+			return (0);
+		list = list->next;
+	}
+	return (1);
 }
