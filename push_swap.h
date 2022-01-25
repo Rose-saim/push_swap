@@ -6,7 +6,7 @@
 /*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 17:20:08 by myrmarti          #+#    #+#             */
-/*   Updated: 2021/11/17 13:16:57 by myrmarti         ###   ########.fr       */
+/*   Updated: 2021/11/26 21:09:35 by myrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	both_reverse_rotate(t_arg **list_a, t_arg **list_b);
 void	push(t_arg **list_a, t_arg **list_b);
 void	swap_both(t_arg **list_a, t_arg **list_b);
 
+int		num_overflow(char *str);
+int		return_overflow(char *string, int c);
 char	*copy(char *str_arg, int size);
 int		strclen(char *str, int c);
 

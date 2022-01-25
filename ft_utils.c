@@ -6,7 +6,7 @@
 /*   By: myrmarti <myrmarti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/15 16:14:38 by myrmarti          #+#    #+#             */
-/*   Updated: 2021/11/17 13:17:38 by myrmarti         ###   ########.fr       */
+/*   Updated: 2022/01/25 11:37:28 by myrmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 int	strclen(char *str, int c)
 {
 	int	size;
+	int	i;
 
 	size = 0;
-	while (str && str[size] != c && str[size])
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[size + i] && str[size + i] != c)
 		size++;
 	return (size);
 }
@@ -39,6 +43,46 @@ char	*copy(char *str_arg, int size)
 	return (str_final);
 }
 
+int	num_overflow(char *str)
+{
+	int			j;
+	int			i;
+	char		*string;
+
+	j = 0;
+	i = 0;
+	if (str[0] != '0')
+		return (0);
+	string = malloc(sizeof(char) * 12);
+	if (!string)
+		return (0);
+	if (str && (str[i] == '0' || str[i] == '-'))
+	{
+		if (str[i] == '-')
+			++i;
+		while (str[i] && str[i] == '0')
+			++i;
+		while (str[i + j])
+		{
+			string[j] = str[i + j];
+			++j;
+		}
+		string[j] = '\0';
+	}
+	return (return_overflow(string, 0));
+}
+
+int	return_overflow(char *string, int c)
+{
+	if (strclen(string, c) > 11)
+	{
+		free(string);
+		return (1);
+	}
+	free(string);
+	return (0);
+}
+
 int	ft_atoi(char *str, t_arg *list)
 {
 	int long	num;
@@ -46,9 +90,9 @@ int	ft_atoi(char *str, t_arg *list)
 
 	num = 0;
 	sign = 1;
-	if (strclen(str, 0) > 11)
+	if (num_overflow(str))
 		error_free(list);
-	if (*str == '-' ||*str == '+')
+	if (*str == '-' || *str == '+')
 	{
 		if (!(*(str + 1) >= '0' && *(str + 1) <= '9'))
 			error_free(list);
@@ -64,16 +108,4 @@ int	ft_atoi(char *str, t_arg *list)
 	if (num * sign > 2147483647 || num * sign < -2147483648)
 		error_free(list);
 	return (num * sign);
-}
-
-void	error_free(t_arg *list)
-{
-	free_lst(list);
-	write_error();
-}
-
-void	write_error(void)
-{
-	write(2, "Error\n", 6);
-	exit(0);
 }
